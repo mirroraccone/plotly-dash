@@ -8,4 +8,4 @@ COPY . .
 
 EXPOSE $PORT
 
-CMD ["python","viz.py"]
+CMD CMD gunicorn --workers=2 --bind 0.0.0.0:$PORT 'viz:app'
