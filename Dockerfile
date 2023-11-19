@@ -6,6 +6,6 @@ RUN pip install --no-cache-dir -r Requirements.txt
 
 COPY . .
 
-EXPOSE $PORT
+EXPOSE 8050
 
-CMD gunicorn --workers=2 --bind 0.0.0.0:$PORT 'viz:app' --timeout 120
+CMD ["python", "app.py"]
