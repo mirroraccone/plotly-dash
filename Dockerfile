@@ -8,4 +8,4 @@ COPY . .
 
 EXPOSE $PORT
 
-CMD gunicorn --workers=2 --bind 0.0.0.0:$PORT 'viz:app'
+CMD gunicorn --workers=2 --bind 0.0.0.0:$PORT 'viz:app' --timeout 120
