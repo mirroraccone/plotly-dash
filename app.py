@@ -71,44 +71,7 @@ gdf = gdf.merge(df_district,on='lat_long',how='left')
 gdf.rename(columns={"STATE":"State"},inplace=True)
 
 
-data = {
-    'Serial No.': [1, 2, 3, 4, 5, 6],
-    'Metric name': [
-        'Tap water connection Coverage',
-        'Reporting by Implementing Departments (Reporting rate)',
-        'Certification by Gram Sabhas (Certification Rate)',
-        'Reporting to Coverage Ratio',
-        'Certification to Coverage Ratio',
-        'Certification to Reporting Ratio'
-    ],
-    'Definition': [
-        'The proportion of households with a tap connection out of the total number of households.',
-        'The number of households reported by the implementing departments as having achieved the “Har Ghar Jal” status.',
-        'The number of households certified by the Gram Sabhas as having achieved the “Har Ghar Jal” status.',
-        'It is the ratio of the number of households reported by implementing agencies as having a functional tap water connection to the total number of households with a tap water connection.',
-        'It is the ratio of the number of households certified by Gram Sabhas as having a functional tap water connection to the total number of households with a tap water connection.',
-        'It is the ratio of the number of households certified by Gram Sabhas as having a functional tap water connection to the total number of households reported by implementing agencies to have tap water connection.'
-    ],
-    'Calculation': [
-        '(Households with Tap Connection / Total Households) x 100',
-        '(Reported Households / Total Households) x 100',
-        '(Certified Households / Total Households) x 100',
-        '(Number of Reported Households with Tap Connection / Total Number of Households with Tap Connection) x 100',
-        '(Number of Certified Households with Tap Connection / Total Number of Households with Tap Connection) x 100',
-        '(Number of Har Ghar Jal households certified by Gram Sabhas / Total number of Har Ghar Jal households reported by implementing agencies) x 100'
-    ],
-    'Significance': [
-        'Indicates accessibility and the extent of coverage of tap water connections for rural households',
-        'Reflects effectiveness and rigor of administrative monitoring systems and data transparency',
-        'Assesses participation and the accuracy of progress claims based on Gram Sabha verification processes.',
-        'Evaluates accuracy of reported data versus actual coverage to reveal potential priority issues about reporting by the implementing agencies',
-        'Examines robustness of certification mechanism and sustainability of the certification process by the Gram Sabhas.',
-        'Compares consistency between the implementing agencies and the Gram Sabhas in delivering and monitoring the certification program.'
-    ],
-    'Ideal Range': ['90-100%', '75-100%', '70-100%', '90-100%', '75-100%', '90-100%']
-}
 
-df_table = pd.DataFrame(data)
 
 
 
@@ -568,12 +531,16 @@ def multibargraph(selected_state,selected_year):
 
     # Sort data by the first variable
     sorted_data = filtered_data.sort_values(by='Tap water connection Coverage', ascending=True)
-
+    colors = {
+        'Reporting by Implementing Departments (Reporting rate)': 'orange',
+        'Certification by Gram Sabhas (Certification Rate)': 'green',
+        'Tap water connection Coverage': 'blue'
+    }
     # Create the multi-bar graph
     fig = go.Figure()
 
     # Add bars for each variable
-    for variable in ['Reporting by Implementing Departments (Reporting rate)', 'Certification by Gram Sabhas (Certification Rate)','Tap water connection Coverage']:
+    for variable in ['Certification by Gram Sabhas (Certification Rate)','Reporting by Implementing Departments (Reporting rate)', 'Tap water connection Coverage']:
         fig.add_trace(go.Bar(
             x=sorted_data[variable],
             y=sorted_data['District1'],
@@ -581,7 +548,7 @@ def multibargraph(selected_state,selected_year):
             orientation='h',  # Set orientation to horizontal
             text=sorted_data[variable].apply(lambda x: f'{x:.1f}%'),  # Display data labels on the bars
             textposition='outside',
-            marker=dict(line=dict(width=0)),
+            marker=dict(line=dict(width=0),color=colors[variable]),
             # showlegend=False, 
         ))
 
@@ -618,7 +585,7 @@ def multibargraph2(selected_state,selected_year):
 
     # Sort data by the first variable
     sorted_data = filtered_data.sort_values(by='Tap water connection Coverage', ascending=True)
-
+    colors = {'Certification to Reporting Ratio': 'maroon', 'Tap water connection Coverage': 'blue'}
     # Create the multi-bar graph
     fig = go.Figure()
 
@@ -631,7 +598,7 @@ def multibargraph2(selected_state,selected_year):
             orientation='h',  # Set orientation to horizontal
             text=sorted_data[variable].apply(lambda x: f'{x:.1f}%'),  # Display data labels on the bars
             textposition='outside',
-            marker=dict(line=dict(width=0)),
+            marker=dict(line=dict(width=0),color=colors[variable]),
             # showlegend=False, 
         ))
 
@@ -669,12 +636,16 @@ def multibargraph_block(selected_state,selected_district,selected_year):
 
     # Sort data by the first variable
     sorted_data = filtered_data.sort_values(by='Tap water connection Coverage', ascending=True)
-
+    colors = {
+        'Reporting by Implementing Departments (Reporting rate)': 'orange',
+        'Certification by Gram Sabhas (Certification Rate)': 'green',
+        'Tap water connection Coverage': 'blue'
+    }
     # Create the multi-bar graph
     fig = go.Figure()
 
     # Add bars for each variable
-    for variable in ['Reporting by Implementing Departments (Reporting rate)', 'Certification by Gram Sabhas (Certification Rate)','Tap water connection Coverage']:
+    for variable in ['Certification by Gram Sabhas (Certification Rate)','Reporting by Implementing Departments (Reporting rate)','Tap water connection Coverage']:
         fig.add_trace(go.Bar(
             x=sorted_data[variable],
             y=sorted_data['Block'],
@@ -682,7 +653,7 @@ def multibargraph_block(selected_state,selected_district,selected_year):
             orientation='h',  # Set orientation to horizontal
             text=sorted_data[variable].apply(lambda x: f'{x:.1f}%'),  # Display data labels on the bars
             textposition='outside',
-            marker=dict(line=dict(width=0)),
+            marker=dict(line=dict(width=0),color=colors[variable]),
             # showlegend=False, 
         ))
 
@@ -720,7 +691,7 @@ def multibargraph2_block(selected_state,selected_district,selected_year):
 
     # Sort data by the first variable
     sorted_data = filtered_data.sort_values(by='Tap water connection Coverage', ascending=True)
-
+    colors = {'Certification to Reporting Ratio': 'maroon', 'Tap water connection Coverage': 'blue'}
     # Create the multi-bar graph
     fig = go.Figure()
 
@@ -733,7 +704,7 @@ def multibargraph2_block(selected_state,selected_district,selected_year):
             orientation='h',  # Set orientation to horizontal
             text=sorted_data[variable].apply(lambda x: f'{x:.1f}%'),  # Display data labels on the bars
             textposition='outside',
-            marker=dict(line=dict(width=0)),
+            marker=dict(line=dict(width=0),color=colors[variable]),
             # showlegend=False, 
         ))
 
