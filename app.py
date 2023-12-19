@@ -182,7 +182,7 @@ app.layout = html.Div(style={'backgroundColor': '#f2f2f2'}, children=[
     #         style_cell={'whiteSpace': 'normal', 'textAlign': 'left'}
     #     )
     # ],
-    style={'width': '100%'}),
+    # style={'width': '100%'}),
     # Fourth row with the choropleth map and the first bar chart
     html.Div([
         html.Div([
