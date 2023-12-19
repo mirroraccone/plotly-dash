@@ -171,17 +171,17 @@ app.layout = html.Div(style={'backgroundColor': '#f2f2f2'}, children=[
     ],style={'display': 'flex', 'flex-wrap':'wrap','padding': '10px','justify-content':'space-between'}),
 
     # Second row with the third dropdown and fourth dropdown
-     html.Div([
-        dash_table.DataTable(
-            id='my-table',
-            columns=[
-                {'name': col, 'id': col} for col in df_table.columns
-            ],
-            data=df_table.to_dict('records'),
-            style_table={'height': '300px', 'overflowY': 'auto', 'overflowX': 'auto'},
-            style_cell={'whiteSpace': 'normal', 'textAlign': 'left'}
-        )
-    ],
+    #  html.Div([
+    #     dash_table.DataTable(
+    #         id='my-table',
+    #         columns=[
+    #             {'name': col, 'id': col} for col in df_table.columns
+    #         ],
+    #         data=df_table.to_dict('records'),
+    #         style_table={'height': '300px', 'overflowY': 'auto', 'overflowX': 'auto'},
+    #         style_cell={'whiteSpace': 'normal', 'textAlign': 'left'}
+    #     )
+    # ],
     style={'width': '100%'}),
     # Fourth row with the choropleth map and the first bar chart
     html.Div([
