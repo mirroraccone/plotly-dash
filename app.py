@@ -210,8 +210,8 @@ app.layout = html.Div(style={'backgroundColor': '#f2f2f2'}, children=[
                                        'display': 'inline-block', 
                                        'padding': '10px', 'border-radius': '15px', 'border': '2px solid #ddd', 'background-color': '#f0f8ff'}),
         ], style={'width': '98%', 'margin':'auto','display': 'flex','justify-content':'space-around'}),
-])
-html.Div(
+
+  html.Div(
     children=[
         html.P("Copyright © Jal Jeevan Mission - Indian Institute of Management Banglore. All rights reserved."),
     ],
@@ -224,6 +224,8 @@ html.Div(
         'width': '100%',
     }
 )
+])
+
 
 
 
